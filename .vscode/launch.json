@@ -1,0 +1,19 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "server": "https://navdev.smartcloud.com.ua/",
+            "serverInstance": "EducationAcademy19",
+            "authentication": "Windows",
+            "port": 7149,
+            "tenant": "default",
+            "name": "EducationAcademy19",
+            "request": "launch",
+            "type": "al",
+            "breakOnError": true,
+            "launchBrowser": true,
+            "enableLongRunningSqlStatements": true,
+            "enableSqlInformationDebugger": true
+        }
+    ]
+}
