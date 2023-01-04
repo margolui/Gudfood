@@ -57,5 +57,14 @@ page 50100 "Gudfood Item List"
                 }
             }
         }
+        area(FactBoxes)
+        {
+            part(GudfoodPicture; "Gudfood Picture")
+            {
+                ApplicationArea = All;
+                Caption = 'Picture';
+                SubPageLink = Code = FIELD(Code);
+            }
+        }
     }
 }
