@@ -6,6 +6,8 @@ page 50100 "Gudfood Item List"
     SourceTable = "Gudfood Item";
     UsageCategory = Lists;
     Editable = false;
+    InsertAllowed = true;
+    CardPageId = "Gudfood Item Card";
 
     layout
     {
