@@ -9,7 +9,16 @@ table 50100 "Gudfood Item"
         {
             Caption = 'Code';
             DataClassification = CustomerContent;
-            NotBlank = true;
+            //NotBlank = true;
+
+            trigger OnValidate()
+            begin
+                if Code <> xRec.Code then begin
+                    SalesSetup.Get();
+                    NoSeriesMgt.TestManual(SalesSetup."Gudfood Item Nos.");
+                    "No. Series" := '';
+                end;
+            end;
         }
         field(2; Description; Text[100])
         {
@@ -21,22 +30,21 @@ table 50100 "Gudfood Item"
             Caption = 'Unit Price';
             DataClassification = CustomerContent;
         }
-        field(4; Type; Option)
+        field(4; Type; Enum GudfoodItemType)
         {
             Caption = 'Type';
-
-            OptionCaption = ''',Salat, Burder, Capcake, Drink';
-            OptionMembers = Salat,Burder;
         }
         field(5; "Qty. Ordered"; Decimal)
         {
             Caption = 'Qty. Ordered';
-            DataClassification = CustomerContent;
+            // FieldClass = FlowField;
+            // CalcFormula = 
         }
         field(6; "Qty. in Order"; Decimal)
         {
             Caption = 'Qty. in Order';
-            DataClassification = CustomerContent;
+            //FieldClass = FlowField;
+            // CalcFormula = 
         }
         field(7; "Shelf Life"; Date)
         {
@@ -48,6 +56,12 @@ table 50100 "Gudfood Item"
             Caption = 'Picture';
             DataClassification = CustomerContent;
         }
+        field(9; "No. Series"; Code[20])
+        {
+            Caption = 'No. Series';
+            Editable = false;
+            TableRelation = "No. Series";
+        }
     }
     keys
     {
@@ -56,4 +70,18 @@ table 50100 "Gudfood Item"
             Clustered = true;
         }
     }
+
+    trigger OnInsert()
+    var
+    begin
+        if Code = '' then begin
+            SalesSetup.Get();
+            SalesSetup.TestField("Gudfood Item Nos.");
+            NoSeriesMgt.InitSeries(SalesSetup."Gudfood Item Nos.", xRec."No. Series", 0D, "Code", "No. Series");
+        end;
+    end;
+
+    var
+        SalesSetup: Record "Sales & Receivables Setup";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
 }
