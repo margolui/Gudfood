@@ -43,8 +43,8 @@ table 50100 "Gudfood Item"
         field(6; "Qty. in Order"; Decimal)
         {
             Caption = 'Qty. in Order';
-            //FieldClass = FlowField;
-            // CalcFormula = 
+            FieldClass = FlowField;
+            CalcFormula = Sum("Gudfood Order Line".Quantity where("Order No." = field(Code)));
         }
         field(7; "Shelf Life"; Date)
         {

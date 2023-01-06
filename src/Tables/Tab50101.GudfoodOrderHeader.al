@@ -15,11 +15,23 @@ table 50101 "Gudfood Order Header"
             Caption = 'Sell-to Customer No.';
             DataClassification = CustomerContent;
             TableRelation = Customer;
+
+            trigger OnValidate()
+            var
+                Customer: Record Customer;
+            begin
+
+
+                Customer.Get("Sell-to Customer No.");
+                Rec."Sell-to Customer Name" := Customer.Name;
+            end;
+
         }
         field(3; "Sell-to Customer Name"; Text[100])
         {
             Caption = 'Sell-to Customer Name';
             DataClassification = CustomerContent;
+
         }
         field(4; "Order Date"; Date)
         {
@@ -41,16 +53,15 @@ table 50101 "Gudfood Order Header"
         {
             Caption = 'Total Qty';
             Editable = false;
-            //FieldClass = FlowField;
-            //CalcFormula = Sum
+            FieldClass = FlowField;
+            CalcFormula = Sum("Gudfood Order Line".Quantity WHERE("Order No." = field("No.")));
         }
         field(8; "Total Amount"; Decimal)
         {
             Caption = 'Total Amount';
             Editable = false;
-            //FieldClass = FlowField;
-            //CalcFormula = Sum
-
+            FieldClass = FlowField;
+            CalcFormula = Sum("Gudfood Order Line".Amount WHERE("Order No." = field("No.")));
         }
     }
     keys
@@ -60,4 +71,8 @@ table 50101 "Gudfood Order Header"
             Clustered = true;
         }
     }
+    trigger OnInsert()
+    begin
+        Rec."Order Date" := Today;
+    end;
 }
