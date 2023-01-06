@@ -29,13 +29,12 @@ table 50102 "Gudfood Order Line"
         {
             Caption = 'Item No.';
             DataClassification = ToBeClassified;
+            TableRelation = "Gudfood Item";
         }
-        field(6; "Item Type"; Option)
+        field(6; "Item Type"; Enum GudfoodItemType)
         {
             Caption = 'Item Type';
             DataClassification = ToBeClassified;
-            OptionCaption = ''', Salat, Burder, Capcake, Drink';
-            OptionMembers = Salat,Burder;
         }
         field(7; Description; Text[100])
         {
@@ -60,7 +59,7 @@ table 50102 "Gudfood Order Line"
     }
     keys
     {
-        key(PK; "Order No.")
+        key(PK; "Order No.", "Line No.")
         {
             Clustered = true;
         }
