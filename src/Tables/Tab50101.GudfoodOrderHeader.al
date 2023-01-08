@@ -9,6 +9,15 @@ table 50101 "Gudfood Order Header"
         {
             Caption = 'No.';
             DataClassification = CustomerContent;
+
+            trigger OnValidate()
+            begin
+                if "No." <> xRec."No." then begin
+                    SalesSetup.Get();
+                    NoSeriesMgt.TestManual(SalesSetup."Gudfood Item Nos.");
+                    "No. Series" := '';
+                end;
+            end;
         }
         field(2; "Sell-to Customer No."; Code[20])
         {
@@ -63,6 +72,12 @@ table 50101 "Gudfood Order Header"
             FieldClass = FlowField;
             CalcFormula = Sum("Gudfood Order Line".Amount WHERE("Order No." = field("No.")));
         }
+        field(9; "No. Series"; Code[20])
+        {
+            Caption = 'No. Series';
+            Editable = false;
+            TableRelation = "No. Series";
+        }
     }
     keys
     {
@@ -74,5 +89,15 @@ table 50101 "Gudfood Order Header"
     trigger OnInsert()
     begin
         Rec."Order Date" := Today;
+
+        if "No." = '' then begin
+            SalesSetup.Get();
+            SalesSetup.TestField("Gudfood Item Nos.");
+            NoSeriesMgt.InitSeries(SalesSetup."Gudfood Item Nos.", xRec."No. Series", 0D, "No.", "No. Series");
+        end;
     end;
+
+    var
+        SalesSetup: Record "Sales & Receivables Setup";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
 }
