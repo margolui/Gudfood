@@ -77,7 +77,7 @@ table 50100 "Gudfood Item"
         if Code = '' then begin
             SalesSetup.Get();
             SalesSetup.TestField("Gudfood Item Nos.");
-            NoSeriesMgt.InitSeries(SalesSetup."Gudfood Item Nos.", xRec."No. Series", 0D, "Code", "No. Series");
+            NoSeriesMgt.InitSeries(SalesSetup."Gudfood Item Nos.", xRec."No. Series", 0D, Code, "No. Series");
         end;
     end;
 
