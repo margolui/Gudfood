@@ -29,7 +29,8 @@ table 50101 "Gudfood Order Header"
             var
                 Customer: Record Customer;
             begin
-
+                if Rec."Sell-to Customer No." = '' then
+                    exit;
 
                 Customer.Get("Sell-to Customer No.");
                 Rec."Sell-to Customer Name" := Customer.Name;
