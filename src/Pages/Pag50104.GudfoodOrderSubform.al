@@ -41,11 +41,6 @@ page 50104 "Gudfood Order Subform"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Item Type field.';
                 }
-                field("Order No."; Rec."Order No.")
-                {
-                    ApplicationArea = All;
-                    ToolTip = 'Specifies the value of the Order No. field.';
-                }
                 field(Quantity; Rec.Quantity)
                 {
                     ApplicationArea = All;
