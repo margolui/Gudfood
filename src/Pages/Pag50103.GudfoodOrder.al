@@ -60,4 +60,27 @@ page 50103 "Gudfood Order"
             }
         }
     }
+
+    actions
+    {
+        area(Navigation)
+        {
+            action(OrderReport)
+            {
+                ApplicationArea = All;
+                Caption = 'Gudfood Order';
+
+                trigger OnAction()
+                var
+                    GudFoodOrder: Report "Gudfood Order";
+                    GudFoodOrderHeader: Record "GudFood Order Header";
+                begin
+                    GudFoodOrderHeader.Get(Rec."No.");
+                    GudFoodOrderHeader.SetRecFilter();
+
+                    report.RunModal(Report::"Gudfood Order", true, false, Rec);
+                end;
+            }
+        }
+    }
 }
