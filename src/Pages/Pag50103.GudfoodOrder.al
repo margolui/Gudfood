@@ -68,7 +68,8 @@ page 50103 "Gudfood Order"
             action(OrderReport)
             {
                 ApplicationArea = All;
-                Caption = 'Gudfood Order';
+                Caption = 'Print';
+                Image = Report;
 
                 trigger OnAction()
                 var
@@ -81,6 +82,37 @@ page 50103 "Gudfood Order"
                     report.RunModal(Report::"Gudfood Order", true, false, Rec);
                 end;
             }
+            action(OrderPost)
+            {
+                ApplicationArea = All;
+                Caption = 'Post';
+                Image = Post;
+
+                trigger OnAction()
+                var
+                    PostedGudfoodOrderHeader: Record "Posted Gudfood Order Header";
+                    NoSeries: Record "No. Series";
+
+                begin
+                    PostedGudfoodOrderHeader.TransferFields(Rec);
+                    PostedGudfoodOrderHeader."No." := '';
+
+                    if Rec."Posting No." = '' then begin
+                        SalesSetup.Get();
+                        SalesSetup.TestField("Gudfood Item Nos.");
+                        NoSeriesMgt.InitSeries(SalesSetup."Posted Gudfood Order Nos.", xRec."No. Series", 0D, PostedGudfoodOrderHeader."No.", PostedGudfoodOrderHeader."No. Series");
+                    end
+                    else
+                        PostedGudfoodOrderheader."No." := Rec."Posting No.";
+
+                    PostedGudfoodOrderHeader.Insert(true);
+
+                end;
+
+            }
         }
     }
+    var
+        SalesSetup: Record "Sales & Receivables Setup";
+        NoSeriesMgt: Codeunit NoSeriesManagement;
 }
