@@ -37,8 +37,8 @@ table 50100 "Gudfood Item"
         field(5; "Qty. Ordered"; Decimal)
         {
             Caption = 'Qty. Ordered';
-            // FieldClass = FlowField;
-            // CalcFormula = 
+            FieldClass = FlowField;
+            CalcFormula = Sum("Posted Gudfood Order Line".Quantity where("Order No." = field(Code)));
         }
         field(6; "Qty. in Order"; Decimal)
         {
