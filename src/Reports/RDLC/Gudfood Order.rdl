@@ -53,7 +53,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Code Gudfood Item</Value>
+                                  <Value>Code </Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -80,7 +80,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Type Gudfood Item</Value>
+                                  <Value>Type </Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -110,7 +110,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Description Gudfood Item</Value>
+                                  <Value>Description </Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -140,7 +140,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Quantity Gudfood Order Line</Value>
+                                  <Value>Quantity</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -170,7 +170,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Unit Price Gudfood Order Line</Value>
+                                  <Value>Unit Price</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -200,7 +200,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>Amount Gudfood Order Line</Value>
+                                  <Value>Amount</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -640,7 +640,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Parameters!No_CustomerCaption.Value</Value>
+                      <Value>=First(Fields!SelltoCustomerNo.Value, "DataSet_Result")</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontSize>8pt</FontSize>
@@ -671,7 +671,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Parameters!Name_CustomerCaption.Value</Value>
+                      <Value>=First(Fields!SelltoCustomerName.Value, "DataSet_Result")</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontSize>8pt</FontSize>
@@ -702,7 +702,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Fields!Name_Company.Value</Value>
+                      <Value>=First(Fields!Name_CompanyInformation.Value, "DataSet_Result")</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontSize>8pt</FontSize>
@@ -733,7 +733,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Parameters!OrderDateCaption.Value</Value>
+                      <Value>=Fields!OrderDate.Value</Value>
                       <Style>
                         <FontFamily>Segoe UI</FontFamily>
                         <FontSize>8pt</FontSize>
@@ -856,33 +856,6 @@
       </DefaultValue>
       <Prompt>TotalQtyCaption</Prompt>
     </ReportParameter>
-    <ReportParameter Name="No_CustomerCaption">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>No_CustomerCaption</Value>
-        </Values>
-      </DefaultValue>
-      <Prompt>No_CustomerCaption</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Name_CustomerCaption">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>Name_CustomerCaption</Value>
-        </Values>
-      </DefaultValue>
-      <Prompt>Name_CustomerCaption</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="Name_CompanyCaption">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>Name_CompanyCaption</Value>
-        </Values>
-      </DefaultValue>
-      <Prompt>Name_CompanyCaption</Prompt>
-    </ReportParameter>
     <ReportParameter Name="Code_GudfoodItemCaption">
       <DataType>String</DataType>
       <DefaultValue>
@@ -941,7 +914,7 @@
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>1</NumberOfColumns>
-      <NumberOfRows>18</NumberOfRows>
+      <NumberOfRows>15</NumberOfRows>
       <CellDefinitions>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
@@ -991,46 +964,31 @@
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
           <RowIndex>9</RowIndex>
-          <ParameterName>No_CustomerCaption</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>10</RowIndex>
-          <ParameterName>Name_CustomerCaption</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>11</RowIndex>
-          <ParameterName>Name_CompanyCaption</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>12</RowIndex>
           <ParameterName>Code_GudfoodItemCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
-          <RowIndex>13</RowIndex>
+          <RowIndex>10</RowIndex>
           <ParameterName>Type_GudfoodItemCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
-          <RowIndex>14</RowIndex>
+          <RowIndex>11</RowIndex>
           <ParameterName>Description_GudfoodItemCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
-          <RowIndex>15</RowIndex>
+          <RowIndex>12</RowIndex>
           <ParameterName>Quantity_GudfoodOrderLineCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
-          <RowIndex>16</RowIndex>
+          <RowIndex>13</RowIndex>
           <ParameterName>UnitPrice_GudfoodOrderLineCaption</ParameterName>
         </CellDefinition>
         <CellDefinition>
           <ColumnIndex>0</ColumnIndex>
-          <RowIndex>17</RowIndex>
+          <RowIndex>14</RowIndex>
           <ParameterName>Amount_GudfoodOrderLineCaption</ParameterName>
         </CellDefinition>
       </CellDefinitions>
@@ -1110,15 +1068,6 @@ End Function
         </Field>
         <Field Name="TotalQtyFormat">
           <DataField>TotalQtyFormat</DataField>
-        </Field>
-        <Field Name="No_Customer">
-          <DataField>No_Customer</DataField>
-        </Field>
-        <Field Name="Name_Customer">
-          <DataField>Name_Customer</DataField>
-        </Field>
-        <Field Name="Name_Company">
-          <DataField>Name_Company</DataField>
         </Field>
         <Field Name="CurrReport_PAGENOCaption">
           <DataField>CurrReport_PAGENOCaption</DataField>
