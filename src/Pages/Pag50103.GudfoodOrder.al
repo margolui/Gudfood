@@ -110,6 +110,19 @@ page 50103 "Gudfood Order"
                 end;
 
             }
+            action(ExportGudfoodOrder)
+            {
+                Caption = 'Export Gudfood Order';
+                Promoted = true;
+                PromotedCategory = Process;
+                Image = Export;
+                ApplicationArea = All;
+
+                trigger OnAction()
+                begin
+                    Xmlport.Run(50100, true, false);
+                end;
+            }
         }
     }
     var
