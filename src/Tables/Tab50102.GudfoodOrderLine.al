@@ -54,7 +54,7 @@ table 50102 "Gudfood Order Line"
         {
             Caption = 'Item Type';
             FieldClass = FlowField; //FlowField на “Gudfood Item”.Type
-            CalcFormula = lookup("Gudfood Item".Type where(Code = field("Order No.")));
+            CalcFormula = lookup("Gudfood Item".Type where(Code = field("Item No.")));
         }
         field(7; Description; Text[100])
         {
