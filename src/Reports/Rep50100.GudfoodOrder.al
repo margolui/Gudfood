@@ -42,18 +42,7 @@ report 50100 "Gudfood Order"
             {
                 IncludeCaption = true;
             }
-            column(No_Customer; Customer."No.")
-            {
-                IncludeCaption = true;
-            }
-            column(Name_Customer; Customer.Name)
-            {
-                IncludeCaption = true;
-            }
-            column(Name_Company; CompanyInformation.Name)
-            {
-                IncludeCaption = true;
-            }
+
             column(CurrReport_PAGENOCaption; CurrReport_PAGENOCaptionLbl)
             {
             }
@@ -87,11 +76,7 @@ report 50100 "Gudfood Order"
                     IncludeCaption = true;
                 }
 
-                trigger onaftergetRecord()
-
-                var
-                    myInt: Integer;
-
+                trigger OnAfterGetRecord()
                 begin
                     if GudfoodOrderLine."Item No." <> '' then
                         GudfoodItem.Get(GudfoodOrderLine."Item No.")
@@ -99,13 +84,12 @@ report 50100 "Gudfood Order"
                         Clear(GudfoodItem);
                 end;
             }
+
         }
     }
 
     var
         CurrReport_PAGENOCaptionLbl: Label 'Page';
-        CompanyInformation: Record "Company Information";
-        Customer: Record Customer;
         GudfoodItem: Record "Gudfood Item";
 
 }
