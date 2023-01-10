@@ -14,7 +14,7 @@ table 50101 "Gudfood Order Header"
             begin
                 if "No." <> xRec."No." then begin
                     SalesSetup.Get();
-                    NoSeriesMgt.TestManual(SalesSetup."Gudfood Item Nos.");
+                    NoSeriesMgt.TestManual(SalesSetup."Gudfood Order Nos.");
                     "No. Series" := '';
                 end;
             end;
@@ -93,8 +93,8 @@ table 50101 "Gudfood Order Header"
 
         if "No." = '' then begin
             SalesSetup.Get();
-            SalesSetup.TestField("Gudfood Item Nos.");
-            NoSeriesMgt.InitSeries(SalesSetup."Gudfood Item Nos.", xRec."No. Series", 0D, "No.", "No. Series");
+            SalesSetup.TestField("Gudfood Order Nos.");
+            NoSeriesMgt.InitSeries(SalesSetup."Gudfood Order Nos.", xRec."No. Series", 0D, "No.", "No. Series");
         end;
     end;
 
