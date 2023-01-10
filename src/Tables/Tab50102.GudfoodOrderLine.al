@@ -53,7 +53,7 @@ table 50102 "Gudfood Order Line"
         field(6; "Item Type"; Enum GudfoodItemType)
         {
             Caption = 'Item Type';
-            FieldClass = FlowField; //FlowField на “Gudfood Item”.Type
+            FieldClass = FlowField;
             CalcFormula = lookup("Gudfood Item".Type where(Code = field("Item No.")));
         }
         field(7; Description; Text[100])
