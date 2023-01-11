@@ -89,24 +89,8 @@ page 50103 "Gudfood Order"
                 Image = Post;
 
                 trigger OnAction()
-                var
-                    PostedGudfoodOrderHeader: Record "Posted Gudfood Order Header";
-                    NoSeries: Record "No. Series";
-
                 begin
-                    PostedGudfoodOrderHeader.TransferFields(Rec);
-                    PostedGudfoodOrderHeader."No." := '';
-
-                    if Rec."Posting No." = '' then begin
-                        SalesSetup.Get();
-                        SalesSetup.TestField("Gudfood Item Nos.");
-                        NoSeriesMgt.InitSeries(SalesSetup."Posted Gudfood Order Nos.", xRec."No. Series", 0D, PostedGudfoodOrderHeader."No.", PostedGudfoodOrderHeader."No. Series");
-                    end
-                    else
-                        PostedGudfoodOrderheader."No." := Rec."Posting No.";
-
-                    PostedGudfoodOrderHeader.Insert(true);
-
+                    Codeunit.Run(50100, Rec);
                 end;
 
             }

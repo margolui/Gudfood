@@ -114,10 +114,6 @@ page 50102 "Gudfood Picture"
         if Rec.Description = '' then
             Error(MustSpecifyDescriptionErr);
 
-        // if Rec.Picture.Count > 0 then
-        //     if not Confirm(OverrideImageQst) then
-        //         Error('');
-
         ClientFileName := '';
         FileName := FileManagement.UploadFile(SelectPictureTxt, ClientFileName);
         if FileName = '' then
