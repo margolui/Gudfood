@@ -1,15 +1,15 @@
-page 50104 "Gudfood Order Subform"
+page 50105 "Posted Gudfood Order Subform"
 {
-    Caption = 'Gudfood Order Subform';
+    Caption = 'Posted Gudfood Order Subform';
     PageType = ListPart;
-    SourceTable = "Gudfood Order Line";
-    AutoSplitKey = true;
+    SourceTable = "Posted Gudfood Order Line";
+    Editable = false;
 
     layout
     {
         area(content)
         {
-            repeater(General)
+            group(General)
             {
                 field("Sell- to Customer  No."; Rec."Sell- to Customer  No.")
                 {

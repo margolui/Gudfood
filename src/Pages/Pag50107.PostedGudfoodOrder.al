@@ -58,7 +58,7 @@ page 50107 "Posted Gudfood Order"
                 }
 
             }
-            part(PostedGudfoodOrderSubpage; "Posted Gudfood Order Subpage")
+            part(PostedGudfoodOrderSubpage; "Posted Gudfood Order Subform")
             {
                 ApplicationArea = Basic, Suite;
                 SubPageLink = "Order No." = FIELD("No.");

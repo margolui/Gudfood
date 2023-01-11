@@ -38,13 +38,13 @@ table 50100 "Gudfood Item"
         {
             Caption = 'Qty. Ordered';
             FieldClass = FlowField;
-            CalcFormula = Sum("Posted Gudfood Order Line".Quantity where("Order No." = field(Code)));
+            CalcFormula = Sum("Posted Gudfood Order Line".Quantity where("Item No." = field(Code)));
         }
         field(6; "Qty. in Order"; Decimal)
         {
             Caption = 'Qty. in Order';
             FieldClass = FlowField;
-            CalcFormula = Sum("Gudfood Order Line".Quantity where("Order No." = field(Code)));
+            CalcFormula = Sum("Gudfood Order Line".Quantity where("Item No." = field(Code)));
         }
         field(7; "Shelf Life"; Date)
         {
