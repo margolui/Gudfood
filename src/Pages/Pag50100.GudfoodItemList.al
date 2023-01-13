@@ -67,4 +67,50 @@ page 50100 "Gudfood Item List"
             }
         }
     }
+    actions
+    {
+        area(processing)
+        {
+            group("Gudfood Item")
+            {
+                Caption = 'Gudfood Item';
+                Image = DataEntry;
+                group(Dimensions)
+                {
+                    Caption = 'Dimensions';
+                    Image = Dimensions;
+                    action(DimensionsSingle)
+                    {
+                        ApplicationArea = Dimensions;
+                        Caption = 'Dimensions-Single';
+                        Image = Dimensions;
+                        RunObject = Page "Default Dimensions";
+                        RunPageLink = "Table ID" = CONST(50100),
+                                      "No." = FIELD(Code);
+                        ShortCutKey = 'Alt+D';
+                        ToolTip = 'View or edit the single set of dimensions that are set up for the selected record.';
+                    }
+                    action(DimensionsMultiple)
+                    {
+                        AccessByPermission = TableData Dimension = R;
+                        ApplicationArea = Dimensions;
+                        Caption = 'Dimensions-&Multiple';
+                        Image = DimensionSets;
+                        ToolTip = 'View or edit dimensions for a group of records. You can assign dimension codes to transactions to distribute costs and analyze historical information.';
+
+                        trigger OnAction()
+                        var
+                            GudfoodItem: Record "Gudfood Item";
+                            DefaultDimMultiple: Page "Default Dimensions-Multiple";
+                        begin
+                            CurrPage.SetSelectionFilter(GudfoodItem);
+                            DefaultDimMultiple.SetMultiRecord(GudfoodItem, GudfoodItem.FieldNo(Code));
+                            DefaultDimMultiple.RunModal;
+                        end;
+                    }
+                }
+            }
+        }
+
+    }
 }

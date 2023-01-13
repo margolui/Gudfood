@@ -62,6 +62,31 @@ table 50100 "Gudfood Item"
             Editable = false;
             TableRelation = "No. Series";
         }
+        field(65; "Global Dimension 1 Code"; Code[20])
+        {
+            CaptionClass = '1,3,1';
+            Caption = 'Global Dimension 1 Filter';
+
+            TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(1),
+                                                          Blocked = CONST(false));
+
+            trigger OnValidate()
+            begin
+                ValidateShortcutDimCode(1, "Global Dimension 1 Code");
+            end;
+        }
+        field(66; "Global Dimension 2 Code"; Code[20])
+        {
+            CaptionClass = '1,3,2';
+            Caption = 'Global Dimension 2 Filter';
+            FieldClass = FlowFilter;
+            TableRelation = "Dimension Value".Code WHERE("Global Dimension No." = CONST(2),
+                                                          Blocked = CONST(false));
+            trigger OnValidate()
+            begin
+                ValidateShortcutDimCode(2, "Global Dimension 2 Code");
+            end;
+        }
     }
     keys
     {
@@ -81,7 +106,18 @@ table 50100 "Gudfood Item"
         end;
     end;
 
+    procedure ValidateShortcutDimCode(FieldNumber: Integer; var ShortcutDimCode: Code[20])
+    begin
+        DimMgt.ValidateDimValueCode(FieldNumber, ShortcutDimCode);
+        if not IsTemporary then begin
+            DimMgt.SaveDefaultDim(DATABASE::Customer, Code, FieldNumber, ShortcutDimCode);
+            Modify;
+        end;
+
+    end;
+
     var
         SalesSetup: Record "Sales & Receivables Setup";
         NoSeriesMgt: Codeunit NoSeriesManagement;
+        DimMgt: Codeunit DimensionManagement;
 }

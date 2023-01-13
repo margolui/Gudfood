@@ -75,4 +75,21 @@ page 50101 "Gudfood Item Card"
             }
         }
     }
+    actions
+    {
+        area(Processing)
+        {
+            action(Dimensions)
+            {
+                ApplicationArea = Dimensions;
+                Caption = 'Dimensions';
+                Image = Dimensions;
+                RunObject = Page "Default Dimensions";
+                RunPageLink = "Table ID" = CONST(50100),
+                                  "No." = FIELD(Code);
+                ShortCutKey = 'Alt+D';
+                ToolTip = 'View or edit dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.';
+            }
+        }
+    }
 }
