@@ -51,6 +51,26 @@ page 50103 "Gudfood Order"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Total Qty field.';
                 }
+                field("Shortcut Dimension 1 Code"; Rec."Shortcut Dimension 1 Code")
+                {
+                    ApplicationArea = Dimensions;
+                    ToolTip = 'Specifies the code for Shortcut Dimension 1, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
+
+                    trigger OnValidate()
+                    begin
+                        ShortcutDimension1CodeOnAfterV;
+                    end;
+                }
+                field("Shortcut Dimension 2 Code"; Rec."Shortcut Dimension 2 Code")
+                {
+                    ApplicationArea = Dimensions;
+                    ToolTip = 'Specifies the code for Shortcut Dimension 2, which is one of two global dimension codes that you set up in the General Ledger Setup window.';
+
+                    trigger OnValidate()
+                    begin
+                        ShortcutDimension2CodeOnAfterV;
+                    end;
+                }
             }
             part(GudfoodOrderSubform; "Gudfood Order Subform")
             {
@@ -107,9 +127,31 @@ page 50103 "Gudfood Order"
                     Xmlport.Run(50100, true, false);
                 end;
             }
+            action(Dimensions)
+            {
+                AccessByPermission = TableData Dimension = R;
+                ApplicationArea = Dimensions;
+                Caption = 'Dimensions';
+                Enabled = Rec."No." <> '';
+                Image = Dimensions;
+                ShortCutKey = 'Alt+D';
+                ToolTip = 'View or edit dimensions, such as area, project, or department, that you can assign to sales and purchase documents to distribute costs and analyze transaction history.';
+
+                trigger OnAction()
+                begin
+                    Rec.ShowDocDim;
+                    CurrPage.SaveRecord;
+                end;
+            }
         }
     }
-    var
-        SalesSetup: Record "Sales & Receivables Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+    local procedure ShortcutDimension1CodeOnAfterV()
+    begin
+        CurrPage.Update();
+    end;
+
+    local procedure ShortcutDimension2CodeOnAfterV()
+    begin
+        CurrPage.Update();
+    end;
 }
