@@ -110,7 +110,7 @@ table 50100 "Gudfood Item"
     begin
         DimMgt.ValidateDimValueCode(FieldNumber, ShortcutDimCode);
         if not IsTemporary then begin
-            DimMgt.SaveDefaultDim(DATABASE::Customer, Code, FieldNumber, ShortcutDimCode);
+            DimMgt.SaveDefaultDim(DATABASE::"Gudfood Item", Code, FieldNumber, ShortcutDimCode);
             Modify;
         end;
 

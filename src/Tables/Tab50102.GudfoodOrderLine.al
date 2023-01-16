@@ -145,39 +145,19 @@ table 50102 "Gudfood Order Line"
     procedure ShowDimensions() IsChanged: Boolean
     var
         OldDimSetID: Integer;
-        IsHandled: Boolean;
     begin
-        IsHandled := false;
-        if IsHandled then
-            exit;
 
         OldDimSetID := "Dimension Set ID";
         "Dimension Set ID" :=
           DimMgt.EditDimensionSet("Dimension Set ID", StrSubstNo('%1 %2 %3', "Order No.", "Line No."));
-        VerifyItemLineDim();
         DimMgt.UpdateGlobalDimFromDimSetID("Dimension Set ID", "Shortcut Dimension 1 Code", "Shortcut Dimension 2 Code");
         IsChanged := OldDimSetID <> "Dimension Set ID";
 
     end;
 
     procedure ValidateShortcutDimCode(FieldNumber: Integer; var ShortcutDimCode: Code[20])
-    var
-        IsHandled: Boolean;
     begin
-        IsHandled := false;
-        if IsHandled then
-            exit;
-
         DimMgt.ValidateShortcutDimValues(FieldNumber, ShortcutDimCode, "Dimension Set ID");
-    end;
-
-    local procedure VerifyItemLineDim()
-    var
-        IsHandled: Boolean;
-    begin
-        IsHandled := false;
-        if IsHandled then
-            exit;
     end;
 
     var
