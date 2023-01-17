@@ -34,6 +34,8 @@ table 50101 "Gudfood Order Header"
 
                 Customer.Get("Sell-to Customer No.");
                 Rec."Sell-to Customer Name" := Customer.Name;
+
+                CreateDimensionsFromValidateSellToCustomerNo();
             end;
         }
         field(3; "Sell-to Customer Name"; Text[100])
@@ -232,7 +234,7 @@ table 50101 "Gudfood Order Header"
         end;
     end;
 
-    local procedure CreateDimensionsFromValidateBillToCustomerNo()
+    local procedure CreateDimensionsFromValidateSellToCustomerNo()//CreateDimensionsFromValidateBillToCustomerNo
     begin
         CreateDim(DATABASE::Customer, Rec."Sell-to Customer No.");
     end;
