@@ -16,7 +16,7 @@ codeunit 50100 "Posted Gudfood Orders"
 
         if Rec."Posting No." = '' then begin
             SalesSetup.Get();
-            SalesSetup.TestField("Gudfood Item Nos.");
+            SalesSetup.TestField("Posted Gudfood Order Nos.");
             NoSeriesMgt.InitSeries(SalesSetup."Posted Gudfood Order Nos.", Rec."No. Series", 0D, PostedGudfoodOrderHeader."No.", PostedGudfoodOrderHeader."No. Series");
         end
         else

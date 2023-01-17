@@ -59,7 +59,7 @@ table 50104 "Posted Gudfood Order Line"
     }
     keys
     {
-        key(PK; "Order No.")
+        key(PK; "Order No.", "Line No.")
         {
             Clustered = true;
         }
